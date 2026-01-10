@@ -237,7 +237,9 @@ export const CommandConfigSchema = z.object({
     commandName: z.string().optional(),
 });
 
-export type Config = z.infer<typeof ConfigSchema> & Cardigantime.Config;
+export type Config = z.infer<typeof ConfigSchema> & Cardigantime.Config & {
+    discoveredConfigDirs?: string[];
+};
 export type SecureConfig = z.infer<typeof SecureConfigSchema>;
 export type CommandConfig = z.infer<typeof CommandConfigSchema>;
 
