@@ -44,7 +44,7 @@
   "dependencies": {
     "@eldrforge/git-tools": "^0.1.22",
     "@eldrforge/github-tools": "^0.1.21",
-    "@eldrforge/ai-service": "^0.1.21",
+    "@eldrforge/ai-service": "^0.1.22",
     "@eldrforge/shared": "^0.1.10",
     "@riotprompt/riotprompt": "^0.0.21",
     "@theunwalked/cardigantime": "^0.0.22",
