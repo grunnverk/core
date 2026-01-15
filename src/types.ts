@@ -196,6 +196,7 @@ export const ConfigSchema = z.object({
         statusParallel: z.boolean().optional(),
         auditBranches: z.boolean().optional(),
         validateState: z.boolean().optional(),
+        order: z.boolean().optional(),
     }).optional(),
     development: z.object({
         targetVersion: z.string().optional(),
@@ -462,6 +463,7 @@ export type TreeConfig = {
     statusParallel?: boolean;
     auditBranches?: boolean;
     validateState?: boolean;
+    order?: boolean;
 }
 
 export type DevelopmentConfig = {
