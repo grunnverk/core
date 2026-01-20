@@ -104,6 +104,9 @@ export const ConfigSchema = z.object({
         openaiReasoning: z.enum(['low', 'medium', 'high']).optional(),
         openaiMaxOutputTokens: z.number().optional(),
     }).optional(),
+    precommit: z.object({
+        fix: z.boolean().optional(),
+    }).optional(),
     publish: z.object({
         mergeMethod: z.enum(['merge', 'squash', 'rebase']).optional(),
         from: z.string().optional(),
@@ -169,6 +172,7 @@ export const ConfigSchema = z.object({
         packageArgument: z.string().optional(),
         cleanNodeModules: z.boolean().optional(),
         externals: z.array(z.string()).optional(),
+        fix: z.boolean().optional(), // For precommit command: attempt to auto-fix linting issues
         // Parallel execution options
         parallel: z.boolean().optional(),
         maxConcurrency: z.number().optional(),
@@ -419,6 +423,14 @@ export type BranchTargetConfig = {
 
 export type TargetsConfig = Record<string, BranchTargetConfig>;
 
+/**
+ * Callback function called when a tree command focuses on a particular package
+ * @param packageName - The name of the package being processed
+ * @param index - Zero-based index of the package in the build order
+ * @param total - Total number of packages to process
+ */
+export type PackageFocusCallback = (packageName: string, index: number, total: number) => void | Promise<void>;
+
 export type TreeConfig = {
     directories?: string[];
     excludedPatterns?: string[];
@@ -467,6 +479,10 @@ export type TreeConfig = {
     auditBranches?: boolean;
     validateState?: boolean;
     order?: boolean;
+    fix?: boolean; // For precommit command: attempt to auto-fix linting issues
+
+    // Callback for when focusing on a package (useful for progress tracking)
+    onPackageFocus?: PackageFocusCallback;
 }
 
 export type DevelopmentConfig = {

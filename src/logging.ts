@@ -51,18 +51,27 @@ const createTransports = (level: string) => {
         // In MCP mode, add a silent Memory transport to prevent winston from logging transport errors
         // Winston complains when there are no transports, so we add a silent one
         // The log capture transport will be added separately via installLogCapture
+        // Use a no-op stream that discards all output
         const silentStream = new Writable({
             write(_chunk: any, _encoding: string, callback: () => void) {
                 // Silent - discard all output, log capture handles actual logging
                 callback();
             },
+            // Suppress any errors from the stream itself
+            destroy: function(_err: Error | null, callback: () => void) {
+                callback();
+            },
         });
-        transports.push(
-            new winston.transports.Stream({
-                stream: silentStream,
-                silent: true,
-            })
-        );
+        // Suppress winston transport errors by catching them
+        const silentTransport = new winston.transports.Stream({
+            stream: silentStream,
+            silent: true,
+        });
+        // Override error handling on the transport to prevent winston from logging to stderr
+        (silentTransport as any).on('error', () => {
+            // Silently ignore transport errors - don't output to stderr
+        });
+        transports.push(silentTransport);
     } else {
         // Add console transport for info level and above (only when NOT in MCP mode)
         if (level === 'info') {
@@ -196,15 +205,28 @@ const logger = winston.createLogger({
     format: createFormat('info'),
     defaultMeta: { service: PROGRAM_NAME },
     transports: createTransports('info'),
+    // Suppress winston's own error handling in MCP mode to prevent stderr pollution
+    exceptionHandlers: process.env.KODRDRIV_MCP_SERVER === 'true' ? [] : undefined,
+    rejectionHandlers: process.env.KODRDRIV_MCP_SERVER === 'true' ? [] : undefined,
+    // Prevent winston from logging transport errors to stderr
+    handleExceptions: false,
+    handleRejections: false,
 });
 
 export const setLogLevel = (level: string) => {
     // Reconfigure the existing logger instead of creating a new one
+    const isMcpServer = process.env.KODRDRIV_MCP_SERVER === 'true';
     logger.configure({
         level,
         format: createFormat(level),
         defaultMeta: { service: PROGRAM_NAME },
         transports: createTransports(level),
+        // Suppress winston's own error handling in MCP mode to prevent stderr pollution
+        exceptionHandlers: isMcpServer ? [] : undefined,
+        rejectionHandlers: isMcpServer ? [] : undefined,
+        // Prevent winston from logging transport errors to stderr
+        handleExceptions: false,
+        handleRejections: false,
     });
 };
 
