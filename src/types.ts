@@ -59,6 +59,7 @@ export const ConfigSchema = z.object({
         noMilestones: z.boolean().optional(),
         fromMain: z.boolean().optional(),
         currentBranch: z.string().optional(),
+        version: z.string().optional(), // Explicit target version for release notes title
         // Agentic options (always enabled)
         maxAgenticIterations: z.number().optional(),
         selfReflection: z.boolean().optional(),
