@@ -1,6 +1,6 @@
 {
   "name": "@eldrforge/core",
-  "version": "0.1.4-dev.0",
+  "version": "1.0.0-dev.0",
   "description": "Core utilities for kodrdriv command packages",
   "main": "dist/index.js",
   "type": "module",
@@ -62,7 +62,7 @@
     "@typescript-eslint/eslint-plugin": "^8.39.1",
     "@typescript-eslint/parser": "^8.39.1",
     "@vitest/coverage-v8": "^4.0.13",
-    "esbuild": "0.25.10",
+    "esbuild": "0.27.2",
     "eslint": "^9.33.0",
     "eslint-plugin-import": "^2.32.0",
     "globals": "^16.3.0",
