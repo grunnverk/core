@@ -61,9 +61,11 @@ export const sanitizeDirection = (direction: string | undefined, maxLength: numb
     // Truncate if too long
     if (sanitized.length > maxLength) {
         const truncated = sanitized.substring(0, maxLength - 3) + '...';
-        // Log truncation for debugging
-        // eslint-disable-next-line no-console
-        console.warn(`Direction truncated from ${sanitized.length} to ${truncated.length} characters`);
+        // Log truncation for debugging (only if not in MCP server mode)
+        if (process.env.KODRDRIV_MCP_SERVER !== 'true') {
+            // eslint-disable-next-line no-console
+            console.warn(`Direction truncated from ${sanitized.length} to ${truncated.length} characters`);
+        }
         return truncated;
     }
 

@@ -14,8 +14,11 @@ export * from './util/loggerAdapter';
 export * from './util/validation';
 export * from './util/fileLock';
 export * from './util/errorHandler';
+export * from './util/progressTracker';
 
 // Foundation
 export * from './types';
 export * from './constants';
 export * from './logging';
+export * from './errors';
+export * from './transactionLog';

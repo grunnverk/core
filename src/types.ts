@@ -59,6 +59,7 @@ export const ConfigSchema = z.object({
         noMilestones: z.boolean().optional(),
         fromMain: z.boolean().optional(),
         currentBranch: z.string().optional(),
+        version: z.string().optional(), // Explicit target version for release notes title
         // Agentic options (always enabled)
         maxAgenticIterations: z.number().optional(),
         selfReflection: z.boolean().optional(),
@@ -103,6 +104,9 @@ export const ConfigSchema = z.object({
         openaiReasoning: z.enum(['low', 'medium', 'high']).optional(),
         openaiMaxOutputTokens: z.number().optional(),
     }).optional(),
+    precommit: z.object({
+        fix: z.boolean().optional(),
+    }).optional(),
     publish: z.object({
         mergeMethod: z.enum(['merge', 'squash', 'rebase']).optional(),
         from: z.string().optional(),
@@ -129,6 +133,7 @@ export const ConfigSchema = z.object({
         updateDeps: z.string().optional(),
         agenticPublish: z.boolean().optional(),
         agenticPublishMaxIterations: z.number().optional(),
+        skipLinkCleanup: z.boolean().optional(),
     }).optional(),
     branches: z.record(z.string(), z.object({
         targetBranch: z.string().optional(),
@@ -167,6 +172,7 @@ export const ConfigSchema = z.object({
         packageArgument: z.string().optional(),
         cleanNodeModules: z.boolean().optional(),
         externals: z.array(z.string()).optional(),
+        fix: z.boolean().optional(), // For precommit command: attempt to auto-fix linting issues
         // Parallel execution options
         parallel: z.boolean().optional(),
         maxConcurrency: z.number().optional(),
@@ -196,6 +202,7 @@ export const ConfigSchema = z.object({
         statusParallel: z.boolean().optional(),
         auditBranches: z.boolean().optional(),
         validateState: z.boolean().optional(),
+        order: z.boolean().optional(),
     }).optional(),
     development: z.object({
         targetVersion: z.string().optional(),
@@ -399,6 +406,7 @@ export type PublishConfig = {
     updateDeps?: string; // scope for inter-project dependency updates (e.g., '@fjell')
     agenticPublish?: boolean; // use AI agent to automatically diagnose and fix publish issues
     agenticPublishMaxIterations?: number; // maximum iterations for agentic publish (default: 10)
+    skipLinkCleanup?: boolean; // skip package-lock.json cleanup for file: dependencies (used by tree publish)
 }
 
 export type VersionTargetConfig = {
@@ -414,6 +422,14 @@ export type BranchTargetConfig = {
 }
 
 export type TargetsConfig = Record<string, BranchTargetConfig>;
+
+/**
+ * Callback function called when a tree command focuses on a particular package
+ * @param packageName - The name of the package being processed
+ * @param index - Zero-based index of the package in the build order
+ * @param total - Total number of packages to process
+ */
+export type PackageFocusCallback = (packageName: string, index: number, total: number) => void | Promise<void>;
 
 export type TreeConfig = {
     directories?: string[];
@@ -462,6 +478,11 @@ export type TreeConfig = {
     statusParallel?: boolean;
     auditBranches?: boolean;
     validateState?: boolean;
+    order?: boolean;
+    fix?: boolean; // For precommit command: attempt to auto-fix linting issues
+
+    // Callback for when focusing on a package (useful for progress tracking)
+    onPackageFocus?: PackageFocusCallback;
 }
 
 export type DevelopmentConfig = {
