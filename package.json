@@ -1,6 +1,6 @@
 {
   "name": "@eldrforge/core",
-  "version": "1.0.0-dev.0",
+  "version": "1.0.0",
   "description": "Core utilities for kodrdriv command packages",
   "main": "dist/index.js",
   "type": "module",
