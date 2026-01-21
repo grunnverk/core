@@ -44,8 +44,8 @@
   "dependencies": {
     "@eldrforge/git-tools": "^1.0.1",
     "@eldrforge/github-tools": "^1.0.0",
-    "@eldrforge/ai-service": "^1.0.0",
-    "@eldrforge/shared": "^0.1.10",
+    "@eldrforge/ai-service": "^1.0.1",
+    "@eldrforge/shared": "^0.1.11",
     "@riotprompt/riotprompt": "^0.0.21",
     "@theunwalked/cardigantime": "^0.0.22",
     "dotenv": "^16.4.7",
