@@ -3,11 +3,11 @@ import {
     createSuccessResult,
     createErrorResult,
 } from '../../src/util/errorHandler';
-import { CommandError } from '@eldrforge/shared';
+import { CommandError } from '@grunnverk/shared';
 
-// Mock @eldrforge/shared
-vi.mock('@eldrforge/shared', async () => {
-    const actual = await vi.importActual('@eldrforge/shared');
+// Mock @grunnverk/shared
+vi.mock('@grunnverk/shared', async () => {
+    const actual = await vi.importActual('@grunnverk/shared');
     return {
         ...actual,
         CommandError: class CommandError extends Error {

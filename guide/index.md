@@ -1,4 +1,4 @@
-# @eldrforge/core - Agentic Guide
+# @grunnverk/core - Agentic Guide
 
 ## Purpose
 
@@ -19,23 +19,23 @@ For AI agents working with this package:
 
 ```typescript
 // Content utilities
-import { create as createDiff } from '@eldrforge/core';
-import { create as createLog } from '@eldrforge/core';
-import { create as createFiles } from '@eldrforge/core';
+import { create as createDiff } from '@grunnverk/core';
+import { create as createLog } from '@grunnverk/core';
+import { create as createFiles } from '@grunnverk/core';
 
 // Utilities
-import { getOutputPath, improveContentWithLLM } from '@eldrforge/core';
+import { getOutputPath, improveContentWithLLM } from '@grunnverk/core';
 
 // Foundation
-import { Config, getLogger } from '@eldrforge/core';
+import { Config, getLogger } from '@grunnverk/core';
 ```
 
 ## Dependencies
 
-- @eldrforge/git-tools
-- @eldrforge/github-tools
-- @eldrforge/ai-service
-- @eldrforge/shared
+- @grunnverk/git-tools
+- @grunnverk/github-tools
+- @grunnverk/ai-service
+- @grunnverk/shared
 
 ## Package Structure
 

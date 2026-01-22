@@ -17,8 +17,8 @@ vi.mock('../../src/logging', () => ({
     }),
 }));
 
-// Mock @eldrforge/git-tools
-vi.mock('@eldrforge/git-tools', () => ({
+// Mock @grunnverk/git-tools
+vi.mock('@grunnverk/git-tools', () => ({
     run: vi.fn(),
 }));
 

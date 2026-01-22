@@ -1,17 +1,17 @@
-# @eldrforge/core
+# @grunnverk/core
 
 Core utilities for kodrdriv command packages.
 
 ## Installation
 
 ```bash
-npm install @eldrforge/core
+npm install @grunnverk/core
 ```
 
 ## Usage
 
 ```typescript
-import { Config, getLogger, create as createDiff } from '@eldrforge/core';
+import { Config, getLogger, create as createDiff } from '@grunnverk/core';
 
 // Use core utilities in your command package
 const logger = getLogger();

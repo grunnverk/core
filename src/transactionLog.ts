@@ -113,7 +113,7 @@ export function createFileRestoreRollback(
     originalContent: string
 ): () => Promise<void> {
     return async () => {
-        const { createStorage } = await import('@eldrforge/shared');
+        const { createStorage } = await import('@grunnverk/shared');
         const storage = createStorage();
         await storage.writeFile(filePath, originalContent, 'utf-8');
     };
@@ -124,7 +124,7 @@ export function createFileRestoreRollback(
  */
 export function createGitRollback(command: string): () => Promise<void> {
     return async () => {
-        const { run } = await import('@eldrforge/git-tools');
+        const { run } = await import('@grunnverk/git-tools');
         await run(command);
     };
 }
