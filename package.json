@@ -42,10 +42,10 @@
     "node": ">=24.0.0"
   },
   "dependencies": {
-    "@grunnverk/git-tools": "^1.5.0",
-    "@grunnverk/github-tools": "^1.5.0",
-    "@grunnverk/ai-service": "^1.5.0",
-    "@grunnverk/shared": "^1.5.2",
+    "@grunnverk/git-tools": "^1.5.1",
+    "@grunnverk/github-tools": "^1.5.1",
+    "@grunnverk/ai-service": "^1.5.1",
+    "@grunnverk/shared": "^1.5.3",
     "@riotprompt/riotprompt": "^0.0.21",
     "@theunwalked/cardigantime": "^0.0.22",
     "dotenv": "^16.4.7",
