@@ -47,7 +47,7 @@
     "@grunnverk/ai-service": "^1.5.3",
     "@grunnverk/shared": "^1.5.4",
     "@riotprompt/riotprompt": "^0.0.21",
-    "@theunwalked/cardigantime": "^0.0.22",
+    "@utilarium/cardigantime": "^0.0.24",
     "dotenv": "^16.4.7",
     "glob": "^11.0.2",
     "openai": "^6.15.0",

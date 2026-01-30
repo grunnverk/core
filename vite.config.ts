@@ -70,7 +70,7 @@ export default defineConfig({
                 '@grunnverk/ai-service',
                 '@grunnverk/shared',
                 '@riotprompt/riotprompt',
-                '@theunwalked/cardigantime',
+                '@utilarium/cardigantime',
                 'dotenv',
                 'glob',
                 'openai',
