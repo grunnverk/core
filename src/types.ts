@@ -131,8 +131,6 @@ export const ConfigSchema = z.object({
         fromMain: z.boolean().optional(),
         skipPrePublishMerge: z.boolean().optional(),
         updateDeps: z.string().optional(),
-        agenticPublish: z.boolean().optional(),
-        agenticPublishMaxIterations: z.number().optional(),
         skipLinkCleanup: z.boolean().optional(),
     }).optional(),
     branches: z.record(z.string(), z.object({
@@ -404,8 +402,6 @@ export type PublishConfig = {
     targetBranch?: string;
     noMilestones?: boolean;
     updateDeps?: string; // scope for inter-project dependency updates (e.g., '@fjell')
-    agenticPublish?: boolean; // use AI agent to automatically diagnose and fix publish issues
-    agenticPublishMaxIterations?: number; // maximum iterations for agentic publish (default: 10)
     skipLinkCleanup?: boolean; // skip package-lock.json cleanup for file: dependencies (used by tree publish)
 }
 
