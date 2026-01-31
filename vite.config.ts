@@ -69,7 +69,7 @@ export default defineConfig({
                 '@grunnverk/github-tools',
                 '@grunnverk/ai-service',
                 '@grunnverk/shared',
-                '@riotprompt/riotprompt',
+                '@kjerneverk/riotprompt',
                 '@utilarium/cardigantime',
                 'dotenv',
                 'glob',
