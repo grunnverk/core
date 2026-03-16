@@ -237,6 +237,7 @@ export const KODRDRIV_DEFAULTS = {
         mergeMethod: DEFAULT_MERGE_METHOD,
         from: DEFAULT_FROM_COMMIT_ALIAS,
         targetVersion: 'patch',
+        lockfilePolicy: 'ignore' as const,
         interactive: DEFAULT_INTERACTIVE_MODE,
         requiredEnvVars: ['GITHUB_TOKEN', 'OPENAI_API_KEY'],
         linkWorkspacePackages: true,
