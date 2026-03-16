@@ -111,6 +111,7 @@ export const ConfigSchema = z.object({
         mergeMethod: z.enum(['merge', 'squash', 'rebase']).optional(),
         from: z.string().optional(),
         targetVersion: z.string().optional(),
+        lockfilePolicy: z.enum(['ignore', 'commit']).optional(),
         interactive: z.boolean().optional(),
         skipAlreadyPublished: z.boolean().optional(),
         forceRepublish: z.boolean().optional(),
@@ -384,6 +385,7 @@ export type PublishConfig = {
     mergeMethod?: 'merge' | 'squash' | 'rebase';
     from?: string;
     targetVersion?: string;
+    lockfilePolicy?: 'ignore' | 'commit'; // lockfile handling policy for publish prechecks
     interactive?: boolean;
     skipAlreadyPublished?: boolean;
     forceRepublish?: boolean;
