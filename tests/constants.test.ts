@@ -341,6 +341,7 @@ describe('constants', () => {
             expect(KODRDRIV_DEFAULTS.publish).toBeDefined();
             expect(KODRDRIV_DEFAULTS.publish.mergeMethod).toBe('squash');
             expect(KODRDRIV_DEFAULTS.publish.targetBranch).toBe('main');
+            expect(KODRDRIV_DEFAULTS.publish.lockfilePolicy).toBe('ignore');
         });
 
         it('should have branches config', () => {

@@ -123,6 +123,12 @@ describe('types and schemas', () => {
                 expect(ConfigSchema.safeParse({ publish: { mergeMethod: 'rebase' } }).success).toBe(true);
                 expect(ConfigSchema.safeParse({ publish: { mergeMethod: 'invalid' } }).success).toBe(false);
             });
+
+            it('should validate lockfilePolicy enum', () => {
+                expect(ConfigSchema.safeParse({ publish: { lockfilePolicy: 'ignore' } }).success).toBe(true);
+                expect(ConfigSchema.safeParse({ publish: { lockfilePolicy: 'commit' } }).success).toBe(true);
+                expect(ConfigSchema.safeParse({ publish: { lockfilePolicy: 'invalid' } }).success).toBe(false);
+            });
         });
 
         describe('branches config', () => {
